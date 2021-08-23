@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Checkout from './components/Checkout';
 import Success from './components/Success';
 import Canceled from './components/Canceled';
+import MyComponent from './components/MyComponent'
 
 import './css/normalize.css';
 import './css/global.css';
@@ -20,6 +21,7 @@ function App() {
           <Canceled />
         </Route>
         <Route path="/">
+        <MyComponent />
           <Checkout />
         </Route>
       </Switch>
