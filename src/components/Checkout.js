@@ -18,7 +18,7 @@ const Checkout = () => {
             </div>
           </div>
 
-          <form action="https://eivindfunctions3.azurewebsites.net/api/stripecreate/create-checkout-session" method="POST">
+          <form action="https://eivindfunctions3.azurewebsites.net/api/stripecreate" method="POST">
             <button role="link">Buy</button>
           </form>
         </section>
