@@ -9,7 +9,8 @@ const Success = () => {
   useEffect(() => {
     async function fetchSession() {
       setSession(
-        await fetch('/checkout-session?sessionId=' + sessionId).then((res) =>
+        // 
+        await fetch('https://eivindfunctions3.azurewebsites.net/api/stripechecksession?sessionId=' + sessionId).then((res) =>
           res.json()
         )
       );
