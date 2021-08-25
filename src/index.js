@@ -21,7 +21,7 @@ function App() {
           <Canceled />
         </Route>
         <Route path="/">
-        <MyComponent />
+          <MyComponent />
           <Checkout />
         </Route>
       </Switch>

@@ -12,7 +12,7 @@ class MyComponent extends React.Component {
     }
   
     componentDidMount() {
-      fetch("https://eivindhello.azurewebsites.net/api/stripeapi?")
+      fetch("https://eivindfunctions3.azurewebsites.net/api/stripecreate?")
         .then((response) => {
             return response.text();
         })
