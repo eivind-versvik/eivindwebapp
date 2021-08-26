@@ -5,8 +5,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Checkout from './components/Checkout';
 import Success from './components/Success';
 import Canceled from './components/Canceled';
-import MyComponent from './components/MyComponent'
-import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 
 import './css/normalize.css';
