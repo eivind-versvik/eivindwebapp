@@ -14,7 +14,7 @@ class Checkout extends React.Component {
       <div className="sr-main">
         <section className="container">
           <div>
-            <h1>Single photo {config.url.FUNCTION_URL} {config.url.SITE_URL}</h1>
+            <h1>Single photo {config.url.FUNCTION_URL} {config.url.SITE_URL} {process.env.NODE_ENV}</h1>
             <h4>Purchase a Pasha original photo</h4>
             <div className="pasha-image">
               <img
@@ -26,7 +26,7 @@ class Checkout extends React.Component {
             </div>
           </div>
           
-          <form action={config.url.FUNCTION_URL + "api/stripecreate?redirect_url=" + encodeURIComponent(config.url.SITE_URL)} method="POST">
+          <form action={config.url.FUNCTION_URL + "/api/stripecreate?redirect_url=" + encodeURIComponent(config.url.SITE_URL)} method="POST">
             <button role="link">Buy</button>
           </form>
         </section>

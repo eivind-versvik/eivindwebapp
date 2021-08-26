@@ -10,7 +10,7 @@ const prod = {
 const dev = {
   url: {
     FUNCTION_URL: 'https://eivindfunctions3.azurewebsites.net',
-    SITE_URL: 'http://127.0.0.1:3000'
+    SITE_URL: 'http://127.0.0.1:3001'
   }
 };
 
