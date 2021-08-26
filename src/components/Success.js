@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import {DashboardLayout} from './Layout';
 
 const Success = () => {
   const [session, setSession] = useState({});
@@ -18,6 +19,7 @@ const Success = () => {
   }, [sessionId]);
 
   return (
+    <DashboardLayout>
     <div className="sr-root">
       <div className="sr-main">
         <header className="sr-header">
@@ -63,6 +65,7 @@ const Success = () => {
         </div>
       </div>
     </div>
+    </DashboardLayout>
   );
 };
 

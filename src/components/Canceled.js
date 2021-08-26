@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {DashboardLayout} from './Layout';
 
 const Canceled = () => {
   return (
+      <DashboardLayout>
     <div className="sr-root">
       <div className="sr-main">
         <header className="sr-header">
@@ -41,7 +43,7 @@ const Canceled = () => {
           />
         </div>
       </div>
-    </div>
+    </div></DashboardLayout>
   );
 };
 
