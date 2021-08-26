@@ -1,12 +1,20 @@
 import React from 'react';
 
-const Checkout = () => {
-  return (
-    <div className="sr-root">
+import { config } from './Constants';
+
+
+class Checkout extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    
+    render() {
+      return (
+      <div className="sr-root">
       <div className="sr-main">
         <section className="container">
           <div>
-            <h1>Single photo</h1>
+            <h1>Single photo {config.url.FUNCTION_URL} {config.url.SITE_URL}</h1>
             <h4>Purchase a Pasha original photo</h4>
             <div className="pasha-image">
               <img
@@ -17,14 +25,15 @@ const Checkout = () => {
               />
             </div>
           </div>
-
-          <form action="https://eivindfunctions3.azurewebsites.net/api/stripecreate" method="POST">
+          
+          <form action={config.url.FUNCTION_URL + "api/stripecreate?redirect_url=" + encodeURIComponent(config.url.SITE_URL)} method="POST">
             <button role="link">Buy</button>
           </form>
         </section>
       </div>
     </div>
-  );
-};
-
+    );
+    }
+  }
+  
 export default Checkout;

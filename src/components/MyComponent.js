@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// TODO: FIX REDIRECT URL WITH EXTRA '/'
 class MyComponent extends React.Component {
     constructor(props) {
       super(props);
@@ -12,7 +12,7 @@ class MyComponent extends React.Component {
     }
   
     componentDidMount() {
-      fetch("https://eivindfunctions3.azurewebsites.net/api/stripecreate?")
+      fetch("https://eivindfunctions3.azurewebsites.net/api/stripecreate?redirect_url=${encodeURIComponent(this.props.redirect_url)}")
         .then((response) => {
             return response.text();
         })
