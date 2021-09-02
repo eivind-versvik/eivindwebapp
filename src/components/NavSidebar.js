@@ -3,6 +3,10 @@ import { Navigation } from "react-minimal-side-navigation";
 import { useHistory, useLocation } from "react-router-dom";
 import Icon from "awesome-react-icons";
 import React, { useState } from "react";
+import { useIsAuthenticated } from "@azure/msal-react";
+
+import { loginRequest } from "../authConfigb2c";
+import { useMsal } from "@azure/msal-react";
 
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 
@@ -10,6 +14,8 @@ export const NavSidebar = () => {
   const history = useHistory();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const isAuthenticated = useIsAuthenticated();
+  const { instance } = useMsal();
 
   return (
     <React.Fragment>
@@ -24,7 +30,7 @@ export const NavSidebar = () => {
       <div>
         <button
           className="btn-menu"
-          onClick={(): void => setIsSidebarOpen(true)}
+          onClick={() => setIsSidebarOpen(true)}
           type="button"
         >
           <Icon name="burger" className="w-6 h-6" />
@@ -57,10 +63,16 @@ export const NavSidebar = () => {
               elemBefore: () => <Icon name="coffee" />
             },
             {
-              title: "Success Page (test)",
+              title: "Payment Strip (test)",
               itemId: "/do_nothing_here",
               elemBefore: () => <Icon name="user" />,
               subNav: [
+                {
+                  title: "Checkout Page",
+                  itemId: "/checkout",
+                  // Optional
+                  elemBefore: () => <Icon name="cloud-snow" />
+                },
                 {
                   title: "Cancel Page",
                   itemId: "/canceled",
@@ -75,12 +87,12 @@ export const NavSidebar = () => {
               ]
             },
             {
-              title: "What to do with this",
+              title: "Information",
               itemId: "/another",
               subNav: [
                 {
-                  title: "Teams",
-                  itemId: "/another/teams"
+                  title: "Profile Data",
+                  itemId: "/profile"
                   // Optional
                   // elemBefore: () => <Icon name="calendar" />
                 }
@@ -90,21 +102,45 @@ export const NavSidebar = () => {
         />
 
         <div className="absolute bottom-0 w-full my-8">
-          <Navigation
-            activeItemId={location.pathname}
-            items={[
-              {
-                title: "Settings",
-                itemId: "/settings",
-                elemBefore: () => <Icon name="activity" />
-              }
-            ]}
-            onSelect={({ itemId }) => {
-              history.push(itemId);
-            }}
-          />
+
+
+        <nav
+                  role="navigation"
+                  aria-label="side-navigation"
+                  className="side-navigation-panel"
+                >
+              <ul className="side-navigation-panel-select">
+              <li className="side-navigation-panel-select-wrap">
+              <div className="side-navigation-panel-select-option" onClick={() => {               
+                    { 
+                        isAuthenticated ?
+                            instance.logoutRedirect({
+                              postLogoutRedirectUri: "/"
+                            })
+                        :            
+                            instance.loginRedirect(loginRequest).catch(e => {
+                              console.log(e);
+                            })
+                      }
+                        }}>
+                <span className="side-navigation-panel-select-option-wrap">
+                    {/** Prefix Icon Component */}
+                    { <Icon name="activity" />}
+
+                    <span className="side-navigation-panel-select-option-text">
+                    { isAuthenticated  ? "Logout" : "Login" }
+                    </span>
+                  </span>
+                  </div>
+                  </li>
+                  </ul>
+                  
+        </nav>
+
         </div>
       </div>
     </React.Fragment>
   );
 };
+
+
